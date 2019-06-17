@@ -1,9 +1,8 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
-use Illuminate\Support\Str;
+use App\Models\City;
 use Faker\Generator as Faker;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +14,30 @@ use Faker\Generator as Faker;
 | model instances for testing / seeding your application's database.
 |
 */
-
-$factory->define(User::class, function (Faker $faker) {
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$cities = City::all()->pluck('id')->toArray();
+$factory->define(User::class, function (Faker $faker) use ($cities) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'first_name'        => $faker->firstName,
+        'last_name'         => $faker->lastName,
+        'notify'            => $faker->randomElement([0, 1]),
+        'phone'             => generateMultipleTimes($faker, 'tollFreePhoneNumber'),
+        'address'           => generateMultipleTimes($faker, 'streetAddress'),
+        'status'            => $faker->randomElement(['available', 'blocked']),
+        'city_id'           => $faker->randomElement($cities),
+        'email'             => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'password'          => str_random(10),
+        'remember_token'    => str_random(10),
     ];
 });
+
+function generateMultipleTimes(Faker $faker, string $property): array
+{
+    $genAmount = random_int(1, 3);
+    for ($i = 0; $i < $genAmount; $i++) {
+        $address[] = $faker->$property;
+    }
+
+    return $address;
+}
