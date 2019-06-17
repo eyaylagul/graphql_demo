@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 return [
 
     /*
@@ -42,10 +44,15 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver'   => 'jwt', // default value - token
             'provider' => 'users',
-            'hash' => false,
+            'hash'     => false,
         ],
+//        'api' => [
+//            'driver' => 'token',
+//            'provider' => 'users',
+//            'hash' => false,
+//        ],
     ],
 
     /*
@@ -65,10 +72,11 @@ return [
     |
     */
 
+
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model'  => App\Models\User::class,
         ],
 
         // 'users' => [
