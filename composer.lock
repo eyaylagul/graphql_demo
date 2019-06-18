@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df97dddbcc40893c23755fd1ebfbcb7e",
+  "content-hash": "70335ce1549e50d62102d572d4b2af41",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -922,6 +922,58 @@
             "time": "2019-05-20T20:21:14+00:00"
         },
         {
+          "name": "mll-lab/laravel-graphql-playground",
+          "version": "v1.0.2",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/mll-lab/laravel-graphql-playground.git",
+            "reference": "e4d9630a7cd949455a1fcb19291e07d697ee5043"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mll-lab/laravel-graphql-playground/zipball/e4d9630a7cd949455a1fcb19291e07d697ee5043",
+            "reference": "e4d9630a7cd949455a1fcb19291e07d697ee5043",
+            "shasum": ""
+          },
+          "require": {
+            "laravel/framework": ">=5.1.0",
+            "php": ">=7"
+          },
+          "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2.12"
+          },
+          "type": "library",
+          "extra": {
+            "laravel": {
+              "providers": [
+                "MLL\\GraphQLPlayground\\GraphQLPlaygroundServiceProvider"
+              ]
+            }
+          },
+          "autoload": {
+            "psr-4": {
+              "MLL\\GraphQLPlayground\\": "src/"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Benedikt Franke",
+              "email": "benedikt@franke.tech"
+            }
+          ],
+          "description": "Easily integrate GraphQL Playground into your Laravel project",
+          "keywords": [
+            "graphql",
+            "graphql-playground",
+            "laravel"
+          ],
+          "time": "2019-05-06T15:03:12+00:00"
+        },
+      {
             "name": "monolog/monolog",
             "version": "1.24.0",
             "source": {
@@ -1822,6 +1874,65 @@
             "time": "2019-05-15T18:20:11+00:00"
         },
         {
+          "name": "spatie/laravel-cors",
+          "version": "1.5.1",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/spatie/laravel-cors.git",
+            "reference": "9f8992f2b5e13482f129df480daa21429c63c5e4"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spatie/laravel-cors/zipball/9f8992f2b5e13482f129df480daa21429c63c5e4",
+            "reference": "9f8992f2b5e13482f129df480daa21429c63c5e4",
+            "shasum": ""
+          },
+          "require": {
+            "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*",
+            "php": "^7.2"
+          },
+          "require-dev": {
+            "orchestra/testbench": "3.5.*|3.6.*|3.7.*|3.8.*",
+            "phpunit/phpunit": "^8.0"
+          },
+          "type": "library",
+          "extra": {
+            "laravel": {
+              "providers": [
+                "Spatie\\Cors\\CorsServiceProvider"
+              ]
+            }
+          },
+          "autoload": {
+            "psr-4": {
+              "Spatie\\Cors\\": "src"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Freek Van der Herten",
+              "email": "freek@spatie.be",
+              "homepage": "https://spatie.be",
+              "role": "Developer"
+            }
+          ],
+          "description": "Send CORS headers in a Laravel or Lumen application",
+          "homepage": "https://github.com/spatie/laravel-cors",
+          "keywords": [
+            "ajax",
+            "api",
+            "cors",
+            "laravel-cors",
+            "request",
+            "spatie"
+          ],
+          "time": "2019-06-05T19:59:25+00:00"
+        },
+      {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.2.1",
             "source": {
