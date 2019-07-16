@@ -11,10 +11,11 @@ class CreateState extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() :void
     {
-        Schema::create('state', function (Blueprint $table) {
+        Schema::create('state', static function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code', 10)->nullable();
             $table->string('name', 30)->unique();
             $table->integer('country_id');
             $table->foreign('country_id')->references('id')->on('country')->onDelete('cascade')->onUpdate('cascade');
@@ -34,7 +35,7 @@ class CreateState extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down() :void
     {
         Schema::dropIfExists('state');
     }

@@ -11,9 +11,9 @@ class CreateCity extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() :void
     {
-        Schema::create('city', function (Blueprint $table) {
+        Schema::create('city', static function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
             $table->decimal('lat', 7, 4);
@@ -36,7 +36,7 @@ class CreateCity extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down() :void
     {
         Schema::dropIfExists('city');
     }

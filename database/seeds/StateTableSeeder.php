@@ -12,36 +12,57 @@ class StateTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $state = array_merge(
-            $this->getNameStates('ca', 5, 1),
-            $this->getNameStates('us', 3, 2)
+        $states = array_merge(
+            $this->getNameStates('ca', 5, 6, 1),
+            $this->getNameStates('us', 3, 2, 2)
         );
 
-        DB::table('state')->insert($state);
+        DB::table('state')->insert($states);
     }
 
-    /**
+    /**ii
      * @param string $nameFileCSV
-     * @param int    $stateColumnIndex
+     * @param int    $stateNameColumnIndex
+     * @param int    $stateCodeColumnIndex
      * @param int    $countryID
      *
      * @return array
      */
-    private function getNameStates(string $nameFileCSV, int $stateColumnIndex, int $countryID): array
+    private function getNameStates(string $nameFileCSV, int $stateNameColumnIndex, int $stateCodeColumnIndex, int $countryID): array
     {
         $data     = array_map('str_getcsv', file(resource_path("region/$nameFileCSV.csv")));
         $allState = [];
         $states   = [];
         foreach ($data as $v) {
-            $allState[] = $v[$stateColumnIndex];
+            $allState[] = [
+                'code' => $v[$stateCodeColumnIndex],
+                'state' => $v[$stateNameColumnIndex]
+            ];
         }
-        foreach (array_unique($allState) as $v) {
+        foreach ($this->unique_multidim_array($allState, 'state') as $v) {
             $states[] = [
-                'name'       => $v,
+                'code'       => $v['code'],
+                'name'       => $v['state'],
                 'country_id' => $countryID,
             ];
         }
 
         return $states;
+    }
+
+    private function unique_multidim_array(array $array, string $key) :array
+    {
+        $temp_array = [];
+        $i = 0;
+        $key_array = [];
+
+        foreach ($array as $val) {
+            if (!in_array($val[$key], $key_array, true)) {
+                $key_array[$i] = $val[$key];
+                $temp_array[$i] = $val;
+            }
+            $i++;
+        }
+        return $temp_array;
     }
 }

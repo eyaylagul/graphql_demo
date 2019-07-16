@@ -12,9 +12,9 @@ class CreateCountry extends Migration
      * https://simplemaps.com/data/ca-cities
      * @return void
      */
-    public function up()
+    public function up() :void
     {
-        Schema::create('country', function (Blueprint $table) {
+        Schema::create('country', static function (Blueprint $table) {
             $table->increments('id');
             $table->string('code', 3)->unique();
             $table->string('name', 150)->unique();
@@ -34,7 +34,7 @@ class CreateCountry extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down() :void
     {
         Schema::dropIfExists('country');
     }

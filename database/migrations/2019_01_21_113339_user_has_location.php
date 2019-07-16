@@ -13,7 +13,7 @@ class UserHasLocation extends Migration
      */
     public function up(): void
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('user', static function (Blueprint $table) {
             $table->integer('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('city')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -26,7 +26,7 @@ class UserHasLocation extends Migration
      */
     public function down(): void
     {
-        Schema::table('user', function ($table) {
+        Schema::table('user', static function ($table) {
             $table->dropColumn('city_id');
         });
     }

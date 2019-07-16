@@ -11,9 +11,9 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() :void
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('user', static function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down() :void
     {
         Schema::dropIfExists('user');
     }
