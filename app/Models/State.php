@@ -27,10 +27,11 @@ use App\Traits\GraphQLSortable;
  */
 class State extends Model
 {
-    use Filterable;
+    use Filterable, GraphQLSortable;
 
     public $sortable = [
         'id',
+        'code',
         'name'
     ];
     public $timestamps = false;

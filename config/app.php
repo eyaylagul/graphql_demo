@@ -69,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Vancouver',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        MLL\GraphQLPlayground\GraphQLPlaygroundServiceProvider::class
     ],
 
     /*

@@ -26,7 +26,7 @@ use App\Traits\GraphQLSortable;
  */
 class Country extends Model
 {
-    use Filterable;
+    use Filterable, GraphQLSortable;
 
     public $timestamps = false;
     public $sortable = [

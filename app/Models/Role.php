@@ -33,7 +33,7 @@ use Laratrust\Models\LaratrustRole;
  */
 class Role extends LaratrustRole
 {
-    use GraphQLSortable;
+    use Filterable, GraphQLSortable;
 
     public $sortable = [
         'id',

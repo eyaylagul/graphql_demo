@@ -67,7 +67,7 @@ return [
     |
     */
     'user_models'           => [
-        'users' => 'App\Models\User',
+        'users' => App\Models\User::class,
     ],
 
     /*

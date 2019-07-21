@@ -63,7 +63,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Authenticatable implements JWTSubject
 {
-    use LaratrustUserTrait, Notifiable, Filterable;
+    use LaratrustUserTrait, Notifiable, Filterable, GraphQLSortable;
 
     protected $table = 'user';
     protected $dates = ['created_at', 'updated_at'];

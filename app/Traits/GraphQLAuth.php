@@ -17,12 +17,10 @@ trait GraphQLAuth
     /**
      * Check authorization user
      *
-     * @param array $args
-     *
      * @return bool
      * @throws \Tymon\JWTAuth\Exceptions\JWTException
      */
-    public function authorize(array $args): bool
+    public function authorize(): bool
     {
         // check bearer toke from header
         if (!JWTAuth::parseToken()->authenticate()) {
@@ -38,7 +36,7 @@ trait GraphQLAuth
             isset($this->permissionReqAll) && $this->permissionReqAll === true ?: false
         )) {
             throw new AccessDeniedHttpException('FORBIDDEN');
-        };
+        }
 
         return true;
     }

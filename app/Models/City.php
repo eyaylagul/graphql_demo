@@ -31,10 +31,13 @@ use App\Traits\GraphQLSortable;
  */
 class City extends Model
 {
-    use Filterable;
+    use Filterable, GraphQLSortable;
+
     public $timestamps = false;
     public $sortable = [
         'id',
+        'lat',
+        'lng',
         'name',
     ];
     protected $table = 'city';
@@ -44,13 +47,5 @@ class City extends Model
     public function state()
     {
         return $this->belongsTo(State::class);
-    }
-
-    public function countrySortable($query, $direction)
-    {
-        return $query->leftJoin('state', 'city.state_id', '=', 'state.id')
-            ->leftJoin('country', 'country.id', '=', 'state.country_id')
-            ->orderBy('country.name', $direction)
-            ->select(['state.*', 'country.*', 'city.*']);
     }
 }

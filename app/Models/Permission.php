@@ -33,7 +33,7 @@ use Laratrust\Models\LaratrustPermission;
  */
 class Permission extends LaratrustPermission
 {
-    use Filterable;
+    use Filterable, GraphQLSortable;
 
     public $sortable = [
         'id',
@@ -43,10 +43,32 @@ class Permission extends LaratrustPermission
         'created_at',
         'updated_at',
     ];
+    protected $dates = ['created_at', 'updated_at'];
     protected $table = 'permission';
     protected $fillable = [
         'name',
         'display_name',
         'description'
     ];
+
+//    public function getCreatedAtAttribute($date)
+//    {
+////        return \Carbon\Carbon::createFromFormat(
+////            'Y-m-d H:i:s',
+////            $date
+////        )->toIso8601String();
+////        return $date->toIso8601String();
+//        return \Carbon\Carbon::parse($date)->toIso8601String();
+////        $this->attributes['created_at'] = \Carbon\Carbon::now();
+//    }
+
+//    public function getUpdatedAtAttribute($date)
+//    {
+////        return \Carbon\Carbon::createFromFormat(
+////            'Y-m-d H:i:s',
+////            $date
+////        )->toIso8601String();
+//        return \Carbon\Carbon::parse($date)->toIso8601String();
+////        $this->attributes['created_at'] = \Carbon\Carbon::now();
+//    }
 }
