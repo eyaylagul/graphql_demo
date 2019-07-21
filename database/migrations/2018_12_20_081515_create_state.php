@@ -20,14 +20,15 @@ class CreateState extends Migration
             $table->integer('country_id');
             $table->foreign('country_id')->references('id')->on('country')->onDelete('cascade')->onUpdate('cascade');
         });
-
-        Artisan::call(
-            'db:seed',
-            [
-                '--class' => 'StateTableSeeder',
-                '--force' => true
-            ]
-        );
+        if (env('APP_ENV') !== 'testing') {
+            Artisan::call(
+                'db:seed',
+                [
+                    '--class' => 'StateTableSeeder',
+                    '--force' => true
+                ]
+            );
+        }
     }
 
     /**

@@ -22,13 +22,15 @@ class CreateCity extends Migration
             $table->foreign('state_id')->references('id')->on('state')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        Artisan::call(
-            'db:seed',
-            [
-                '--class' => 'CityTableSeeder',
-                '--force' => true
-            ]
-        );
+        if (env('APP_ENV') !== 'testing') {
+            Artisan::call(
+                'db:seed',
+                [
+                    '--class' => 'CityTableSeeder',
+                    '--force' => true
+                ]
+            );
+        }
     }
 
     /**

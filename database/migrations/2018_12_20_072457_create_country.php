@@ -20,13 +20,15 @@ class CreateCountry extends Migration
             $table->string('name', 150)->unique();
         });
 
-        Artisan::call(
-            'db:seed',
-            [
-                '--class' => 'CountryTableSeeder',
-                '--force' => true
-            ]
-        );
+        if (env('APP_ENV') !== 'testing') {
+            Artisan::call(
+                'db:seed',
+                [
+                    '--class' => 'CountryTableSeeder',
+                    '--force' => true
+                ]
+            );
+        }
     }
 
     /**
