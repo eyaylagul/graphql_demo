@@ -20,7 +20,7 @@ trait GraphQLAuth
      * @return bool
      * @throws \Tymon\JWTAuth\Exceptions\JWTException
      */
-    public function authorize(): bool
+    public function authorize(array $args): bool
     {
         // check bearer toke from header
         if (!JWTAuth::parseToken()->authenticate()) {

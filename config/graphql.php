@@ -79,17 +79,20 @@ return [
                 'cityUpsert' => App\GraphQL\Mutations\City\Upsert::class,
                 'cityDelete' => App\GraphQL\Mutations\City\Delete::class,
 
-                'roleUpsert' => App\GraphQL\Mutations\Role\Upsert::class,
-                'roleDelete' => App\GraphQL\Mutations\Role\Delete::class,
+                'roleUpsert'         => App\GraphQL\Mutations\Role\Upsert::class,
+                'roleDelete'         => App\GraphQL\Mutations\Role\Delete::class,
+
+                'propertyTypeUpdate' => App\GraphQL\Mutations\PropertyType\Update::class,
             ],
             'middleware' => [], // todo add middleware AUTH JWT
             'method'     => ['get', 'post'],
         ],
         'public'    => [
             'query'      => [
-                'countries'  => App\GraphQL\Queries\CountriesQuery::class,
-                'states'     => App\GraphQL\Queries\StatesQuery::class,
-                'cities'     => App\GraphQL\Queries\CitiesQuery::class,
+                'countries'      => App\GraphQL\Queries\CountriesQuery::class,
+                'states'         => App\GraphQL\Queries\StatesQuery::class,
+                'cities'         => App\GraphQL\Queries\CitiesQuery::class,
+                'property_types' => App\GraphQL\Queries\PropertyTypesQuery::class,
             ],
             'mutation'   => [
                 'signUp' => App\GraphQL\Mutations\SignUpMutation::class,
@@ -111,32 +114,34 @@ return [
     //
     'types'                  => [
         // scalar types
-        'DateTime'          => App\GraphQL\Scalars\DateTime::class,
-        'Date'              => App\GraphQL\Scalars\Date::class,
+        'DateTime'      => App\GraphQL\Scalars\DateTime::class,
+        'Date'          => App\GraphQL\Scalars\Date::class,
         // enum
-        'SortDirection'     => App\GraphQL\Enum\SortDirection::class,
-        'UserStatus'        => App\GraphQL\Enum\UserStatus::class,
+        'SortDirection' => App\GraphQL\Enum\SortDirection::class,
+        'UserStatus'    => App\GraphQL\Enum\UserStatus::class,
         // input types
-        'Sortable'          => App\GraphQL\Scalars\Sortable::class,
-        'Pagination'        => App\GraphQL\Scalars\Pagination::class,
-        'DateTimeRange'     => App\GraphQL\Scalars\DateTimeRange::class,
-        'IntRange'          => App\GraphQL\Scalars\IntRange::class,
+        'Sortable'      => App\GraphQL\Scalars\Sortable::class,
+        'Pagination'    => App\GraphQL\Scalars\Pagination::class,
+        'DateTimeRange' => App\GraphQL\Scalars\DateTimeRange::class,
+        'IntRange'      => App\GraphQL\Scalars\IntRange::class,
 
-        'Users'            => App\GraphQL\Types\Users::class,
-        'Permissions'      => App\GraphQL\Types\Permissions::class,
-        'Roles'            => App\GraphQL\Types\Roles::class,
-        'Countries'        => App\GraphQL\Types\Countries::class,
-        'States'           => App\GraphQL\Types\States::class,
-        'Cities'           => App\GraphQL\Types\Cities::class,
-        'Auth'             => App\GraphQL\Types\Auth::class,
+        'Users'              => App\GraphQL\Types\Users::class,
+        'Permissions'        => App\GraphQL\Types\Permissions::class,
+        'Roles'              => App\GraphQL\Types\Roles::class,
+        'Countries'          => App\GraphQL\Types\Countries::class,
+        'States'             => App\GraphQL\Types\States::class,
+        'Cities'             => App\GraphQL\Types\Cities::class,
+        'PropertyTypes'      => App\GraphQL\Types\PropertyTypes::class,
+        'Auth'               => App\GraphQL\Types\Auth::class,
 
         // Input filters
-        'UserFilter'       => App\GraphQL\Types\Filters\UserFilter::class,
-        'PermissionFilter' => App\GraphQL\Types\Filters\PermissionFilter::class,
-        'RoleFilter'       => App\GraphQL\Types\Filters\RoleFilter::class,
-        'CountryFilter'    => App\GraphQL\Types\Filters\CountryFilter::class,
-        'StateFilter'      => App\GraphQL\Types\Filters\StateFilter::class,
-        'CityFilter'       => App\GraphQL\Types\Filters\CityFilter::class,
+        'UserFilter'         => App\GraphQL\Types\Filters\UserFilter::class,
+        'PermissionFilter'   => App\GraphQL\Types\Filters\PermissionFilter::class,
+        'RoleFilter'         => App\GraphQL\Types\Filters\RoleFilter::class,
+        'CountryFilter'      => App\GraphQL\Types\Filters\CountryFilter::class,
+        'StateFilter'        => App\GraphQL\Types\Filters\StateFilter::class,
+        'CityFilter'         => App\GraphQL\Types\Filters\CityFilter::class,
+        'PropertyTypeFilter' => App\GraphQL\Types\Filters\PropertyTypeFilter::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.
@@ -168,7 +173,7 @@ return [
      * Reference \Rebing\GraphQL\Support\PaginationType::class
      */
 //    'pagination_type'        => Rebing\GraphQL\Support\PaginationType::class,
-    'pagination_type' => App\GraphQL\Scalars\PaginationType::class,
+    'pagination_type'        => App\GraphQL\Scalars\PaginationType::class,
 
     /*
      * Config for GraphiQL (see (https://github.com/graphql/graphiql).
