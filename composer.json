@@ -9,7 +9,9 @@
   "license": "MIT",
   "require": {
     "php": "^7.3",
+    "bensampo/laravel-enum": "^1.21",
     "fideloper/proxy": "^4.0",
+    "guzzlehttp/guzzle": "^6.3",
     "laravel/framework": "5.8.*",
     "laravel/telescope": "^2.0",
     "laravel/tinker": "^1.0",
@@ -17,6 +19,7 @@
     "rebing/graphql-laravel": "^1.23",
     "santigarcor/laratrust": "5.2.*",
     "spatie/laravel-cors": "^1.5",
+    "toin0u/geocoder-laravel": "^4.1",
     "tymon/jwt-auth": "^1.0"
   },
   "require-dev": {
@@ -66,6 +69,12 @@
     ],
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
+    ],
+    "post-update-cmd": [
+      "@php artisan cache:clear"
+    ],
+    "post-install-cmd": [
+      "@php artisan cache:clear"
     ]
   }
 }
