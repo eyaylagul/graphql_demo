@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Traits\Filterable;
 use App\Traits\GraphQLSortable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\City
@@ -28,6 +29,8 @@ use App\Traits\GraphQLSortable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City whereStateId($value)
  * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City apiSortable($args = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City findByCountryCode($code)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City findByStateCode($code)
  */
 class City extends Model
 {
@@ -44,8 +47,23 @@ class City extends Model
     protected $fillable = ['name', 'lat', 'lng', 'state_id'];
     protected $guarded = ['id'];
 
-    public function state()
+    /**
+     * @return BelongsTo
+     */
+    public function state() :BelongsTo
     {
         return $this->belongsTo(State::class);
+    }
+
+    public function scopeFindByStateCode($query, $code)
+    {
+        return $query->leftJoin('state', 'state.id', '=', 'city.state_id')
+            ->where('state.code', $code);
+    }
+
+    public function scopeFindByCountryCode($query, $code)
+    {
+        return $query->leftJoin('country', 'country.id', '=', 'state.country_id')
+            ->where('country.code', $code);
     }
 }

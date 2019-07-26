@@ -6,13 +6,14 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use App\Traits\GraphQLAuth;
+use Illuminate\Support\Arr;
 
 class Upsert extends Mutation
 {
-//    use GraphQLAuth;
-//
-//    protected $permissionReqAll = true;
-//    protected $permission = 'role.create|role.update';
+    use GraphQLAuth;
+
+    protected $permissionReqAll = true;
+    protected $permission = 'role.create|role.update';
 
     public function type()
     {
@@ -62,7 +63,7 @@ class Upsert extends Mutation
     public function resolve($root, $args) :Role
     {
         $role = Role::updateOrCreate([
-            'id' => array_get($args, 'id', null)
+            'id' => Arr::get($args, 'id')
         ], [
             'name'         => $args['name'],
             'display_name' => $args['display_name'],

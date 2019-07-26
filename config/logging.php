@@ -89,6 +89,11 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+
+        'homebuzz' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/homebuzz.log'),
+        ],
     ],
 
 ];
