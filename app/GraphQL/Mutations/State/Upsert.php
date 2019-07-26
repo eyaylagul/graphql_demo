@@ -6,6 +6,7 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\Type;
 use App\Traits\GraphQLAuth;
+use Illuminate\Support\Arr;
 
 class Upsert extends Mutation
 {
@@ -53,7 +54,7 @@ class Upsert extends Mutation
     public function resolve($root, $args): State
     {
         $state = State::updateOrCreate([
-            'id' => array_get($args, 'id', null)
+            'id' => Arr::get($args, 'id')
         ], [
             'name'       => $args['name'],
             'country_id' => $args['country_id'],

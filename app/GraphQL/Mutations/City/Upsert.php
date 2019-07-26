@@ -8,6 +8,7 @@ use GraphQL\Type\Definition\Type;
 use App\Rules\Lat;
 use App\Rules\Lng;
 use App\Traits\GraphQLAuth;
+use Illuminate\Support\Arr;
 
 class Upsert extends Mutation
 {
@@ -61,7 +62,7 @@ class Upsert extends Mutation
     public function resolve($root, $args) :City
     {
         $city = City::updateOrCreate([
-            'id' => array_get($args, 'id', null)
+            'id' => Arr::get($args, 'id')
         ], [
             'name'     => $args['name'],
             'lat'      => $args['lat'],

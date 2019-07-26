@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\GraphQLSortable;
+use \Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * App\Models\Country
@@ -23,6 +24,7 @@ use App\Traits\GraphQLSortable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country apiSortable($args = [])
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country apiFilter(\App\GraphQL\Filters\QueryFilter $filter)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Country filter(\App\Filters\QueryFilter $filter)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\City[] $cities
  */
 class Country extends Model
 {
@@ -37,4 +39,20 @@ class Country extends Model
     protected $table = 'country';
     protected $fillable = ['code', 'name'];
     protected $guarded = ['id'];
+
+    /**
+     * Usage
+     * Country::where('name', 'Canada')
+        ->first()
+        ->cities()
+        ->where('state.name', 'British Columbia')
+        ->where('city.name', 'Vancouver')
+        ->get();
+     * @return HasManyThrough
+     */
+    public function cities() :HasManyThrough
+    {
+        return $this->hasManyThrough(City::class, State::class);
+    }
+
 }
