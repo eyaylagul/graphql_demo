@@ -3,6 +3,7 @@
 use App\Models\City;
 use Faker\Generator as Faker;
 use App\Models\User;
+use \Illuminate\Database\Eloquent\Factory;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,9 @@ use App\Models\User;
 | model instances for testing / seeding your application's database.
 |
 */
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 $cities = City::all()->pluck('id')->toArray();
-$factory->define(User::class, function (Faker $faker) use ($cities) {
+$factory->define(User::class, static function (Faker $faker) use ($cities) {
     return [
         'first_name'        => $faker->firstName,
         'last_name'         => $faker->lastName,
@@ -27,8 +28,8 @@ $factory->define(User::class, function (Faker $faker) use ($cities) {
         'city_id'           => $faker->randomElement($cities),
         'email'             => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password'          => str_random(10),
-        'remember_token'    => str_random(10),
+        'password'          => Str::random(10),
+        'remember_token'    => Str::random(10),
     ];
 });
 
