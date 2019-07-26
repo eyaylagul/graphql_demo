@@ -24,6 +24,8 @@ use App\Traits\GraphQLSortable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State apiFilter(\App\GraphQL\Filters\QueryFilter $filter)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State apiSortable($args = [])
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State filter(\App\Filters\QueryFilter $filter)
+ * @property string|null $code
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\State whereCode($value)
  */
 class State extends Model
 {
