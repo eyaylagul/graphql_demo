@@ -85,6 +85,7 @@ class HomeBuzz extends Command
             $this->info('Processing new id: ' . $id);
             Log::channel('homebuzz')->info('Processing new id: ' . $id);
 
+            /* todo implement city_aliases */
             $city = City::findByStateCode($externalProperty->State)
                 ->findByCountryCode($externalProperty->Country)
                 ->where('city.name', $externalProperty->City)

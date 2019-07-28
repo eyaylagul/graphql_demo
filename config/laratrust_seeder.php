@@ -13,6 +13,7 @@ return [
             'country'       => 'r',
             'property_type' => 'r,u',
             'property'      => 'c,r,u,d',
+            'city_alias'    => 'c,r,u,d',
         ],
         'manager'       => [
             'user'          => 'r,u',
@@ -23,6 +24,7 @@ return [
             'country'       => 'r',
             'property_type' => 'r,u',
             'property'      => 'c,r,u,d',
+            'city_alias'    => 'r,u',
         ],
         'editor'        => [
             'user'          => 'r,u',

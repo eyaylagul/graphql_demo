@@ -18,7 +18,6 @@ class CreateCityAliases extends Migration
             $table->string('name', 100);
             $table->integer('city_id');
             $table->foreign('city_id')->references('id')->on('city')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 

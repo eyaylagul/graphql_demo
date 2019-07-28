@@ -79,10 +79,13 @@ return [
                 'cityUpsert' => App\GraphQL\Mutations\City\Upsert::class,
                 'cityDelete' => App\GraphQL\Mutations\City\Delete::class,
 
-                'roleUpsert'         => App\GraphQL\Mutations\Role\Upsert::class,
-                'roleDelete'         => App\GraphQL\Mutations\Role\Delete::class,
+                'roleUpsert' => App\GraphQL\Mutations\Role\Upsert::class,
+                'roleDelete' => App\GraphQL\Mutations\Role\Delete::class,
 
                 'propertyTypeUpdate' => App\GraphQL\Mutations\PropertyType\Update::class,
+
+                'cityAliasUpsert'    => App\GraphQL\Mutations\CityAlias\Upsert::class,
+                'cityAliasDelete'    => App\GraphQL\Mutations\CityAlias\Delete::class,
             ],
             'middleware' => [], // todo add middleware AUTH JWT
             'method'     => ['get', 'post'],
@@ -92,6 +95,7 @@ return [
                 'countries'      => App\GraphQL\Queries\CountriesQuery::class,
                 'states'         => App\GraphQL\Queries\StatesQuery::class,
                 'cities'         => App\GraphQL\Queries\CitiesQuery::class,
+                'city_aliases'   => App\GraphQL\Queries\CityAliasesQuery::class,
                 'property_types' => App\GraphQL\Queries\PropertyTypesQuery::class,
             ],
             'mutation'   => [
@@ -131,6 +135,7 @@ return [
         'Countries'          => App\GraphQL\Types\Countries::class,
         'States'             => App\GraphQL\Types\States::class,
         'Cities'             => App\GraphQL\Types\Cities::class,
+        'CityAliases'        => App\GraphQL\Types\CityAliases::class,
         'PropertyTypes'      => App\GraphQL\Types\PropertyTypes::class,
         'Auth'               => App\GraphQL\Types\Auth::class,
 
@@ -141,6 +146,7 @@ return [
         'CountryFilter'      => App\GraphQL\Types\Filters\CountryFilter::class,
         'StateFilter'        => App\GraphQL\Types\Filters\StateFilter::class,
         'CityFilter'         => App\GraphQL\Types\Filters\CityFilter::class,
+        'CityAliasFilter'    => App\GraphQL\Types\Filters\CityAliasFilter::class,
         'PropertyTypeFilter' => App\GraphQL\Types\Filters\PropertyTypeFilter::class,
     ],
 

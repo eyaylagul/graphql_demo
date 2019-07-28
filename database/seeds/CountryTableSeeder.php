@@ -14,12 +14,10 @@ class CountryTableSeeder extends Seeder
     {
         DB::table('country')->insert([
             [
-                'id'   => 1,
                 'code' => 'CA',
                 'name' => 'Canada',
             ],
             [
-                'id'   => 2,
                 'code' => 'US',
                 'name' => 'United States',
             ],
