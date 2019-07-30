@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserStatus;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -80,7 +81,7 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at'
     ];
     protected $attributes = [
-        'status' => 'available'
+        'status' => UserStatus::AVAILABLE
     ];
     /**
      * The attributes that should be cast to native types.
@@ -93,7 +94,7 @@ class User extends Authenticatable implements JWTSubject
         'notify'  => 'boolean',
     ];
 
-    public $statuses = ['available', 'blocked'];
+    public $statuses = [UserStatus::AVAILABLE, UserStatus::BLOCKED];
     /**
      * The attributes that are mass assignable.
      *

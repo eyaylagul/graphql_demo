@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Filterable;
 use App\Traits\GraphQLSortable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\PropertyType
@@ -41,4 +42,9 @@ class PropertyType extends Model
     ];
 
     protected $guarded = ['id'];
+
+    public function property() :BelongsTo
+    {
+        return $this->BelongsTo(Property::class);
+    }
 }

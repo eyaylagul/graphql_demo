@@ -96,11 +96,11 @@ class HomeBuzz extends Command
 //            $this->info('City: ' . print_r($city, true));
 
             if (null === $city) {
-                $message = 'Location not found: Country - ' . $externalProperty->Country;
+                $message = 'Country - ' . $externalProperty->Country;
                 $message .= ' State - ' . $externalProperty->State . ' City - ' . $externalProperty->City;
                 $this->error($message);
-                Log::channel('homebuzz')->error($message);
-                throw new Exception();
+                Log::channel('location')->error($message);
+                continue;
             }
 
             // todo add user

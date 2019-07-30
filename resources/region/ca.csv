@@ -45,6 +45,7 @@ Cornwall,45.016667,-74.733333,Canada,CA,Ontario,ON,,48821,46382
 Joliette,46.034,-73.441,Canada,CA,Quebec,QC,,45361,34772
 Belleville,44.166667,-77.383333,Canada,CA,Ontario,ON,,43990,43990
 Charlottetown,46.238225,-63.139481,Canada,CA,Prince Edward Island,PE,admin,42402,31293
+Charlottetown,46.3943,-63.7894,Canada,CA,Prince Edward Island,PE,admin,42402,31293
 Victoriaville,46.063106,-71.958802,Canada,CA,Quebec,QC,,41500,34426
 Grande Prairie,55.166667,-118.8,Canada,CA,Alberta,AB,,41462,40845
 Penticton,49.5,-119.583333,Canada,CA,British Columbia,BC,,37721,30349
@@ -245,3 +246,84 @@ Grise Fiord,76.416667,-82.95,Canada,CA,Nunavut,NU,,23,23
 Big Beaverhouse,52.95,-89.883333,Canada,CA,Ontario,ON,,10,10
 Island Lake,53.966667,-94.766667,Canada,CA,Manitoba,MB,,10,10
 Ennadai,61.133333,-100.883333,Canada,CA,Nunavut,NU,,0,0
+Coquitlam,49.2750553,-122.7997792,Canada,CA,British Columbia,BC,,0,0
+Colwood,48.435738,-123.4818226,Canada,CA,British Columbia,BC,,0,0
+Delta,49.0846258,-123.0579384,Canada,CA,British Columbia,BC,,0,0
+Duncan,48.7786872,-123.7080446,Canada,CA,British Columbia,BC,,0,0
+Enderby,50.5504793,-119.1397789,Canada,CA,British Columbia,BC,,0,0
+Fernie,49.5041747,-115.062867,Canada,CA,British Columbia,BC,,0,0
+Fort St. John,56.2524039,-120.846943,Canada,CA,British Columbia,BC,,0,0
+Grand Forks,49.0271754,-118.4568507,Canada,CA,British Columbia,BC,,0,0
+Greenwood,49.089585,-118.676876,Canada,CA,British Columbia,BC,,0,0
+Kimberley,49.6850876,-115.9819477,Canada,CA,British Columbia,BC,,0,0
+Langford,48.4497693,-123.5046662,Canada,CA,British Columbia,BC,,0,0
+Langley,49.0986488,-122.6592328,Canada,CA,British Columbia,BC,,0,0
+Maple Ridge,49.2197385,-122.5998426,Canada,CA,British Columbia,BC,,0,0
+Merritt,50.111704,-120.7884227,Canada,CA,British Columbia,BC,,0,0
+New Westminster,49.205728,-122.9108651,Canada,CA,British Columbia,BC,,0,0
+North Vancouver,49.3207133,-123.0737831,Canada,CA,British Columbia,BC,,0,0
+Parksville,49.3179514,-124.3117397,Canada,CA,British Columbia,BC,,0,0
+Pitt Meadows,49.2207623,-122.6901534,Canada,CA,British Columbia,BC,,0,0
+Port Alberni,49.2343668,-124.8056517,Canada,CA,British Columbia,BC,,0,0
+Port Coquitlam,49.2621643,-122.7805425,Canada,CA,British Columbia,BC,,0,0
+Port Moody,49.2780458,-122.84815,Canada,CA,British Columbia,BC,,0,0
+Richmond,49.163168,-123.137414,Canada,CA,British Columbia,BC,,0,0
+Rossland,49.0784756,-117.7999026,Canada,CA,British Columbia,BC,,0,0
+Salmon Arm,50.7005059,-119.2790529,Canada,CA,British Columbia,BC,,0,0
+Surrey,49.1913033,-122.8491439,Canada,CA,British Columbia,BC,,0,0
+Trail,49.095227,-117.7136,Canada,CA,British Columbia,BC,,0,0
+Vernon,50.268277,-119.267578,Canada,CA,British Columbia,BC,,0,0
+West Kelowna,49.857464,-119.580688,Canada,CA,British Columbia,BC,,0,0
+White Rock,49.03324,-122.80603,Canada,CA,British Columbia,BC,,0,0
+Airdrie,51.286,-114.0109999,Canada,CA,Alberta,AB,,1110000,915322
+Beaumont,53.3525,-113.41500,Canada,CA,Alberta,AB,,1110000,915322
+Chestermere,51.04988,-113.8293,Canada,CA,Alberta,AB,,1110000,915322
+Cold Lake,54.46442,-110.1806,Canada,CA,Alberta,AB,,1110000,915322
+Fort Saskatchewan,53.69694,-113.22155,Canada,CA,Alberta,AB,,1110000,915322
+Lacombe,52.470865,-113.73070,Canada,CA,Alberta,AB,,1110000,915322
+Leduc,53.25825,-113.55041,Canada,CA,Alberta,AB,,1110000,915322
+Lloydminster,53.28,-110.009,Canada,CA,Alberta,AB,,1110000,915322
+Spruce Grove,53.545204,-113.903503,Canada,CA,Alberta,AB,,1110000,915322
+St. Albert,53.631062,-113.626317,Canada,CA,Alberta,AB,,1110000,915322
+Morden,49.1927,-98.10149,Canada,CA,Manitoba,MB,,9729,9607
+Portage la Prairie,49.972422,-98.289185,Canada,CA,Manitoba,MB,,9729,9607
+Winkler,49.187089,-97.937622,Canada,CA,Manitoba,MB,,9729,9607
+Campbellton,47.99999,-66.67990,Canada,CA,New Brunswick,NB,,90635,87467
+Dieppe,46.0945,-64.7355,Canada,CA,New Brunswick,NB,,90635,87467
+Miramichi,47.032695,-65.494995,Canada,CA,New Brunswick,NB,,90635,87467
+Mount Pear,47.5185,-52.80610,Canada,CA,Newfoundland and Labrador,NL,,20791,18693
+St. John's,47.5617,-52.715100,Canada,CA,Newfoundland and Labrador,NL,,20791,18693
+Brantford,43.13841,-80.26803,Canada,CA,Ontario,ON,,182041,119732
+Burlington,43.3248924,-79.7966835,Canada,CA,Ontario,ON,,182041,119732
+Cambridge,43.36059,-80.30723,Canada,CA,Ontario,ON,,182041,119732
+Clarence-Rockland,45.5483,-75.2858,Canada,CA,Ontario,ON,,182041,119732
+Elliot Lake,46.38193,-82.6592,Canada,CA,Ontario,ON,,182041,119732
+Sudbury,46.4927,-80.991199,Canada,CA,Ontario,ON,,182041,119732
+Guelph,43.53867,-80.24194,Canada,CA,Ontario,ON,,182041,119732
+Kawartha Lakes,44.47885,-78.89744,Canada,CA,Ontario,ON,,182041,119732
+Markham,43.85600,-79.33392,Canada,CA,Ontario,ON,,182041,119732
+Mississauga,43.590338,-79.645729,Canada,CA,Ontario,ON,,182041,119732
+Niagara Falls,43.09784,-79.10765,Canada,CA,Ontario,ON,,182041,119732
+Norfolk,42.79672,-80.41363,Canada,CA,Ontario,ON,,182041,119732
+North Bay,46.3092115,-79.4607617,Canada,CA,Ontario,ON,,182041,119732
+Orillia,44.607609,-79.42196,Canada,CA,Ontario,ON,,182041,119732
+Oshawa,43.89479,-78.87685,Canada,CA,Ontario,ON,,182041,119732
+Pickering,43.83855,-79.091908,Canada,CA,Ontario,ON,,182041,119732
+Port Colborne,42.887775,-79.252211,Canada,CA,Ontario,ON,,182041,119732
+Prince Edward,43.996368,-77.265468,Canada,CA,Ontario,ON,,182041,119732
+Richmond Hill,43.880078,-79.439392,Canada,CA,Ontario,ON,,182041,119732
+Sault Ste. Marie,46.51971,-84.3261,Canada,CA,Ontario,ON,,182041,119732
+St. Catharines,43.1674,-79.2416,Canada,CA,Ontario,ON,,182041,119732
+St. Thomas,42.7736,-81.18040,Canada,CA,Ontario,ON,,182041,119732
+Stratford,43.373112,-80.982971,Canada,CA,Ontario,ON,,182041,119732
+Temiskaming Shores,47.51151,-79.6759,Canada,CA,Ontario,ON,,182041,119732
+Thorold,43.1179352,-79.202235,Canada,CA,Ontario,ON,,182041,119732
+Vaughan,43.85552,-79.51118,Canada,CA,Ontario,ON,,182041,119732
+Waterloo,43.466874,-80.524635,Canada,CA,Ontario,ON,,182041,119732
+Woodstock,43.133061,-80.749855,Canada,CA,Ontario,ON,,182041,119732
+
+Warman,52.3222215,-106.596269,Canada,CA,Saskatchewan,SK,,0,0
+Brampton,43.7248485,-79.8996259,Canada,CA,Ontario,ON,,0,0
+Maple,43.7248485,-79.8996259,Canada,CA,Ontario,ON,,0,0
+Saskatoon,52.1112162,-106.7167109,Canada,CA,Saskatchewan,SK,,0,0
+Squamish,49.7105632,-123.181171,Canada,CA,British Columbia,BC,,0,0

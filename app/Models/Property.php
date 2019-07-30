@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\Filterable;
 use App\Traits\GraphQLSortable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -78,7 +79,7 @@ class Property extends Model
     protected $dates = ['created_at', 'updated_at', 'expire_at', 'available_at'];
     protected $casts = [
         'features'  => 'json',
-        'initiator' => 'json',
+//        'initiator' => 'json',
         'pets'      => 'boolean'
     ];
 
@@ -120,14 +121,14 @@ class Property extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function city(): BelongsTo
+    public function city(): HasOne
     {
-        return $this->belongsTo(City::class);
+        return $this->hasOne(City::class, 'id');
     }
 
-    public function type(): BelongsTo
+    public function type(): HasOne
     {
-        return $this->belongsTo(PropertyType::class);
+        return $this->hasOne(PropertyType::class, 'id');
     }
 
     /* todo check it */

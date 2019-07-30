@@ -84,8 +84,8 @@ return [
 
                 'propertyTypeUpdate' => App\GraphQL\Mutations\PropertyType\Update::class,
 
-                'cityAliasUpsert'    => App\GraphQL\Mutations\CityAlias\Upsert::class,
-                'cityAliasDelete'    => App\GraphQL\Mutations\CityAlias\Delete::class,
+                'cityAliasUpsert' => App\GraphQL\Mutations\CityAlias\Upsert::class,
+                'cityAliasDelete' => App\GraphQL\Mutations\CityAlias\Delete::class,
             ],
             'middleware' => [], // todo add middleware AUTH JWT
             'method'     => ['get', 'post'],
@@ -97,6 +97,7 @@ return [
                 'cities'         => App\GraphQL\Queries\CitiesQuery::class,
                 'city_aliases'   => App\GraphQL\Queries\CityAliasesQuery::class,
                 'property_types' => App\GraphQL\Queries\PropertyTypesQuery::class,
+                'properties'     => App\GraphQL\Queries\PropertiesQuery::class,
             ],
             'mutation'   => [
                 'signUp' => App\GraphQL\Mutations\SignUpMutation::class,
@@ -118,16 +119,17 @@ return [
     //
     'types'                  => [
         // scalar types
-        'DateTime'      => App\GraphQL\Scalars\DateTime::class,
-        'Date'          => App\GraphQL\Scalars\Date::class,
+        'DateTime'       => App\GraphQL\Scalars\DateTime::class,
+        'Date'           => App\GraphQL\Scalars\Date::class,
         // enum
-        'SortDirection' => App\GraphQL\Enum\SortDirection::class,
-        'UserStatus'    => App\GraphQL\Enum\UserStatus::class,
+        'SortDirection'  => App\GraphQL\Enum\SortDirection::class,
+        'UserStatus'     => App\GraphQL\Enum\UserStatus::class,
+        'PropertyStatus' => App\GraphQL\Enum\PropertyStatus::class,
         // input types
-        'Sortable'      => App\GraphQL\Scalars\Sortable::class,
-        'Pagination'    => App\GraphQL\Scalars\Pagination::class,
-        'DateTimeRange' => App\GraphQL\Scalars\DateTimeRange::class,
-        'IntRange'      => App\GraphQL\Scalars\IntRange::class,
+        'Sortable'       => App\GraphQL\Scalars\Sortable::class,
+        'Pagination'     => App\GraphQL\Scalars\Pagination::class,
+        'DateTimeRange'  => App\GraphQL\Scalars\DateTimeRange::class,
+        'IntRange'       => App\GraphQL\Scalars\IntRange::class,
 
         'Users'              => App\GraphQL\Types\Users::class,
         'Permissions'        => App\GraphQL\Types\Permissions::class,
@@ -137,6 +139,7 @@ return [
         'Cities'             => App\GraphQL\Types\Cities::class,
         'CityAliases'        => App\GraphQL\Types\CityAliases::class,
         'PropertyTypes'      => App\GraphQL\Types\PropertyTypes::class,
+        'Properties'         => App\GraphQL\Types\Properties::class,
         'Auth'               => App\GraphQL\Types\Auth::class,
 
         // Input filters

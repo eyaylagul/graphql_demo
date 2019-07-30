@@ -94,6 +94,11 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/homebuzz.log'),
         ],
+
+        'location' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/missing_locations.log'),
+        ],
     ],
 
 ];
