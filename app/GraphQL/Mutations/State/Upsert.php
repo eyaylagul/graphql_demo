@@ -2,21 +2,21 @@
 namespace App\GraphQL\Mutations\State;
 
 use App\Models\State;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\Mutation;
-use GraphQL\Type\Definition\Type;
 use App\Traits\GraphQLAuth;
 use Illuminate\Support\Arr;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class Upsert extends Mutation
 {
     use GraphQLAuth;
 
     protected $permissionReqAll = true;
-    // todo not the best solution because in admin panel we have 2 separated method but here only one
     protected $permission = 'state.create|state.update';
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('States');
     }

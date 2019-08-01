@@ -2,11 +2,12 @@
 
 namespace App\GraphQL\Mutations\PropertyType;
 
-use App\Models\PropertyType;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\Mutation;
-use GraphQL\Type\Definition\Type;
 use App\Traits\GraphQLAuth;
+use App\Models\PropertyType;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class Update extends Mutation
 {
@@ -14,7 +15,7 @@ class Update extends Mutation
 
     protected $permission = 'property_type.update';
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('PropertyTypes');
     }

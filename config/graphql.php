@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     // The prefix for routes
@@ -122,9 +124,9 @@ return [
         'DateTime'       => App\GraphQL\Scalars\DateTime::class,
         'Date'           => App\GraphQL\Scalars\Date::class,
         // enum
-        'SortDirection'  => App\GraphQL\Enum\SortDirection::class,
-        'UserStatus'     => App\GraphQL\Enum\UserStatus::class,
-        'PropertyStatus' => App\GraphQL\Enum\PropertyStatus::class,
+        'SortDirection'  => App\GraphQL\Enums\SortDirection::class,
+        'UserStatus'     => App\GraphQL\Enums\UserStatus::class,
+        'PropertyStatus' => App\GraphQL\Enums\PropertyStatus::class,
         // input types
         'Sortable'       => App\GraphQL\Scalars\Sortable::class,
         'Pagination'     => App\GraphQL\Scalars\Pagination::class,
@@ -152,6 +154,12 @@ return [
         'CityAliasFilter'    => App\GraphQL\Types\Filters\CityAliasFilter::class,
         'PropertyTypeFilter' => App\GraphQL\Types\Filters\PropertyTypeFilter::class,
     ],
+
+
+    // The types will be loaded on demand. Default is to load all types on each request
+    // Can increase performance on schemes with many types
+    // Presupposes the config type key to match the type class name property
+    'lazyload_types' => false,
 
     // This callable will be passed the Error object for each errors GraphQL catch.
     // The method should return an array representing the error.

@@ -2,11 +2,12 @@
 
 namespace App\GraphQL\Mutations;
 
+use JWTAuth;
+use App\Models\User;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
-use JWTAuth;
 use Rebing\GraphQL\Support\Facades\GraphQL;
-use App\Models\User;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class LogInMutation extends Mutation
 {
@@ -14,12 +15,12 @@ class LogInMutation extends Mutation
         'name' => 'logIn'
     ];
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('Auth');
     }
 
-    public function rules(array $args = []) :array
+    public function rules(array $args = []): array
     {
         return [
             'email'    => 'required|string|email',
@@ -27,10 +28,10 @@ class LogInMutation extends Mutation
         ];
     }
 
-    public function args() :array
+    public function args(): array
     {
         return [
-            'email' => [
+            'email'    => [
                 'name' => 'email',
                 'type' => Type::nonNull(Type::string()),
             ],
@@ -41,7 +42,7 @@ class LogInMutation extends Mutation
         ];
     }
 
-    public function resolve($root, $args) :array
+    public function resolve($root, $args): array
     {
         $credentials = [
             'email'    => $args['email'],
@@ -54,7 +55,7 @@ class LogInMutation extends Mutation
         }
 
         $user = User::where('email', $args['email'])->first();
-        if ($user['status'] !== 'available') {
+        if (!$user || $user['status'] !== 'AVAILABLE') {
             throw new \Exception('user has been blocked!');
         }
 

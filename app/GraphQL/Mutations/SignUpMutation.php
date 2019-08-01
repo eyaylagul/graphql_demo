@@ -5,6 +5,7 @@ namespace App\GraphQL\Mutations;
 use App\Models\User;
 use App\Models\Role;
 use GraphQL\Type\Definition\Type;
+use GraphQL\Type\Definition\Type as GraphqlType;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
@@ -16,7 +17,7 @@ class SignUpMutation extends Mutation
         'name' => 'signUp'
     ];
 
-    public function type()
+    public function type(): GraphqlType
     {
         return Type::string();
 

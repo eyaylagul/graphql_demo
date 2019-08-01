@@ -4,10 +4,11 @@ namespace App\GraphQL\Mutations\User;
 
 use App\Models\User;
 use App\Models\Role;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\Mutation;
-use GraphQL\Type\Definition\Type;
 use App\Traits\GraphQLAuth;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class Update extends Mutation
 {
@@ -15,7 +16,7 @@ class Update extends Mutation
 
     protected $permission = 'user.update';
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('Users');
     }

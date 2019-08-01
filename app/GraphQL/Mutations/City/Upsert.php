@@ -1,14 +1,15 @@
 <?php
 namespace App\GraphQL\Mutations\City;
 
-use App\Models\City;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\Mutation;
-use GraphQL\Type\Definition\Type;
 use App\Rules\Lat;
 use App\Rules\Lng;
+use App\Models\City;
 use App\Traits\GraphQLAuth;
 use Illuminate\Support\Arr;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class Upsert extends Mutation
 {
@@ -17,7 +18,7 @@ class Upsert extends Mutation
     protected $permissionReqAll = true;
     protected $permission = 'city.create|city.update';
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('Cities');
     }

@@ -4,10 +4,11 @@ namespace App\GraphQL\Mutations\User;
 
 use App\Models\User;
 use App\Models\Role;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\Mutation;
-use GraphQL\Type\Definition\Type;
 use App\Traits\GraphQLAuth;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class Create extends Mutation
 {
@@ -15,12 +16,11 @@ class Create extends Mutation
 
     protected $permission = 'user.create';
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('Users');
     }
 
-    // todo some rules repeated need to find out better solution to avoid it
     public function rules(array $args = []): array
     {
         return [

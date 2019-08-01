@@ -2,13 +2,15 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Models\PropertyType;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\SelectFields;
-use App\GraphQL\Filters\PropertyTypeFilter;
-use GraphQL\Type\Definition\ResolveInfo;
-use Rebing\GraphQL\Support\Query;
+use Closure;
 use Illuminate\Support\Arr;
+use App\Models\PropertyType;
+use Rebing\GraphQL\Support\Query;
+use GraphQL\Type\Definition\ResolveInfo;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use App\GraphQL\Filters\PropertyTypeFilter;
+use GraphQL\Type\Definition\Type as GraphqlType;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class PropertyTypesQuery extends Query
 {
@@ -17,7 +19,7 @@ class PropertyTypesQuery extends Query
         'description' => 'A query of property types'
     ];
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::paginate('PropertyTypes');
     }
@@ -32,16 +34,19 @@ class PropertyTypesQuery extends Query
     }
 
     /**
-     * @param              $root
-     * @param              $args
-     * @param SelectFields $fields
-     * @param ResolveInfo  $info
+     * @param             $root
+     * @param             $args
+     * @param             $context
+     * @param ResolveInfo $info
+     * @param Closure     $getSelectFields
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
-    public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
+    public function resolve($root, $args, $context, ResolveInfo $info, Closure $getSelectFields): LengthAwarePaginator
     {
-        return PropertyType::with(array_keys($fields->getRelations()))
+        $fields = $getSelectFields();
+
+        return PropertyType::select($fields->getSelect())->with($fields->getRelations())
             ->apiFilter(new PropertyTypeFilter($args))
             ->apiSortable($args)
             ->paginate(

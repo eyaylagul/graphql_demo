@@ -1,14 +1,16 @@
 <?php
 namespace App\GraphQL\Queries;
 
+use Closure;
 use App\Models\Role;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\SelectFields;
-use GraphQL\Type\Definition\ResolveInfo;
-use App\GraphQL\Filters\RoleFilter;
-use Rebing\GraphQL\Support\Query;
 use App\Traits\GraphQLAuth;
 use Illuminate\Support\Arr;
+use Rebing\GraphQL\Support\Query;
+use App\GraphQL\Filters\RoleFilter;
+use GraphQL\Type\Definition\ResolveInfo;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class RolesQuery extends Query
 {
@@ -21,7 +23,7 @@ class RolesQuery extends Query
         'description' => 'A query of roles'
     ];
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::paginate('Roles');
     }
@@ -34,12 +36,23 @@ class RolesQuery extends Query
             'sort' => ['name' => 'sort', 'type' => GraphQL::type('Sortable')]
         ];
     }
-    public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
+
+    /**
+     * @param             $root
+     * @param             $args
+     * @param             $context
+     * @param ResolveInfo $info
+     * @param Closure     $getSelectFields
+     *
+     * @return LengthAwarePaginator
+     */
+    public function resolve($root, $args, $context, ResolveInfo $info, Closure $getSelectFields) :LengthAwarePaginator
     {
-        return Role::with($fields->getRelations())
+        $fields = $getSelectFields();
+
+        return Role::select($fields->getSelect())->with($fields->getRelations())
             ->apiFilter(new RoleFilter($args))
             ->apiSortable($args)
-            ->select($fields->getSelect())
             ->paginate(
                 Arr::get($args, 'pagination.take'),
                 ['*'],

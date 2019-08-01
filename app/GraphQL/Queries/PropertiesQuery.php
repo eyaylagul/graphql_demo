@@ -2,13 +2,15 @@
 
 namespace App\GraphQL\Queries;
 
+use Closure;
 use App\Models\Property;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\SelectFields;
+use Illuminate\Support\Arr;
+use Rebing\GraphQL\Support\Query;
 use App\GraphQL\Filters\CityFilter;
 use GraphQL\Type\Definition\ResolveInfo;
-use Rebing\GraphQL\Support\Query;
-use Illuminate\Support\Arr;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class PropertiesQuery extends Query
 {
@@ -17,7 +19,7 @@ class PropertiesQuery extends Query
         'description' => 'A query of properties'
     ];
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::paginate('Properties');
     }
@@ -32,16 +34,19 @@ class PropertiesQuery extends Query
     }
 
     /**
-     * @param              $root
-     * @param              $args
-     * @param SelectFields $fields
-     * @param ResolveInfo  $info
+     * @param             $root
+     * @param             $args
+     * @param             $context
+     * @param ResolveInfo $info
+     * @param Closure     $getSelectFields
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
-    public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
+    public function resolve($root, $args, $context, ResolveInfo $info, Closure $getSelectFields) :LengthAwarePaginator
     {
-        return Property::with(array_keys($fields->getRelations()))
+        $fields = $getSelectFields();
+
+        return Property::select($fields->getSelect())->with($fields->getRelations())
 //            ->apiFilter(new CityFilter($args))
 //            ->apiSortable($args)
             ->paginate(

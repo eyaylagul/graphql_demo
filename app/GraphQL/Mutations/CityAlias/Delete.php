@@ -3,9 +3,10 @@
 namespace App\GraphQL\Mutations\CityAlias;
 
 use App\Models\CityAlias;
-use Rebing\GraphQL\Support\Mutation;
-use GraphQL\Type\Definition\Type;
 use App\Traits\GraphQLAuth;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Mutation;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class Delete extends Mutation
 {
@@ -13,7 +14,7 @@ class Delete extends Mutation
 
     protected $permission = 'city_alias.delete';
 
-    public function type()
+    public function type(): GraphqlType
     {
         return Type::listOf(Type::id());
     }

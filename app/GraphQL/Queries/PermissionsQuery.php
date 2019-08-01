@@ -1,14 +1,16 @@
 <?php
 namespace App\GraphQL\Queries;
 
+use Closure;
 use App\Models\Permission;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\SelectFields;
-use GraphQL\Type\Definition\ResolveInfo;
-use App\GraphQL\Filters\PermissionFilter;
-use Rebing\GraphQL\Support\Query;
 use App\Traits\GraphQLAuth;
 use Illuminate\Support\Arr;
+use Rebing\GraphQL\Support\Query;
+use GraphQL\Type\Definition\ResolveInfo;
+use App\GraphQL\Filters\PermissionFilter;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class PermissionsQuery extends Query
 {
@@ -21,7 +23,7 @@ class PermissionsQuery extends Query
         'description' => 'A query of permissions'
     ];
 
-    public function type()
+    public function type() :GraphqlType
     {
         return GraphQL::paginate('Permissions');
     }
@@ -35,12 +37,22 @@ class PermissionsQuery extends Query
         ];
     }
 
-    public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
+    /**
+     * @param             $root
+     * @param             $args
+     * @param             $context
+     * @param ResolveInfo $info
+     * @param Closure     $getSelectFields
+     *
+     * @return LengthAwarePaginator
+     */
+    public function resolve($root, $args, $context, ResolveInfo $info, Closure $getSelectFields) :LengthAwarePaginator
     {
-        return Permission::with($fields->getRelations())
+        $fields = $getSelectFields();
+
+        return Permission::select($fields->getSelect())->with($fields->getRelations())
             ->apiFilter(new PermissionFilter($args))
             ->apiSortable($args)
-//            ->select($fields->getSelect())
             ->paginate(
                 Arr::get($args, 'pagination.take'),
                 ['*'],

@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use GraphQL\Type\Definition\Type;
+use GraphQL\Type\Definition\Type as GraphqlType;
 use Rebing\GraphQL\Support\Mutation;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -16,7 +17,7 @@ class UpdateTokenMutation extends Mutation
         'name' => 'UpdateToken'
     ];
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('Auth');
     }

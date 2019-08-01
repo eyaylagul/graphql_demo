@@ -2,18 +2,19 @@
 namespace App\GraphQL\Mutations\User;
 
 use App\Models\User;
-use Rebing\GraphQL\Support\Facades\GraphQL;
+use App\Traits\GraphQLAuth;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\Type;
-use App\Traits\GraphQLAuth;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class UpdatePassword extends Mutation
 {
-//    use GraphQLAuth;
-//
-//    protected $permission = 'user.update.password';
+    use GraphQLAuth;
 
-    public function type()
+    protected $permission = 'user.update.password';
+
+    public function type(): GraphqlType
     {
         return GraphQL::type('Users');
     }

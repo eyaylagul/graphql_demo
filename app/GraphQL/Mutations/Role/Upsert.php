@@ -2,11 +2,12 @@
 namespace App\GraphQL\Mutations\Role;
 
 use App\Models\Role;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Mutation;
 use App\Traits\GraphQLAuth;
 use Illuminate\Support\Arr;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class Upsert extends Mutation
 {
@@ -15,7 +16,7 @@ class Upsert extends Mutation
     protected $permissionReqAll = true;
     protected $permission = 'role.create|role.update';
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('Roles');
     }

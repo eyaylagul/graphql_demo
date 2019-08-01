@@ -16,7 +16,7 @@
     "laravel/telescope": "^2.0",
     "laravel/tinker": "^1.0",
     "mll-lab/laravel-graphql-playground": "^1.0",
-    "rebing/graphql-laravel": "^1.23",
+    "rebing/graphql-laravel": "^v2.0.0-RC5",
     "santigarcor/laratrust": "5.2.*",
     "spatie/laravel-cors": "^1.5",
     "toin0u/geocoder-laravel": "^4.1",

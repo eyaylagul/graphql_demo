@@ -3,11 +3,12 @@
 namespace App\GraphQL\Mutations\CityAlias;
 
 use App\Models\CityAlias;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\Mutation;
-use GraphQL\Type\Definition\Type;
 use App\Traits\GraphQLAuth;
 use Illuminate\Support\Arr;
+use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Mutation;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 class Upsert extends Mutation
 {
@@ -16,7 +17,7 @@ class Upsert extends Mutation
     protected $permissionReqAll = true;
     protected $permission = 'city_alias.create|city_alias.update';
 
-    public function type()
+    public function type(): GraphqlType
     {
         return GraphQL::type('CityAliases');
     }

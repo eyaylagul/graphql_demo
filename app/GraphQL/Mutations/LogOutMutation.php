@@ -2,10 +2,11 @@
 
 namespace App\GraphQL\Mutations;
 
+use JWTAuth;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
-use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use GraphQL\Type\Definition\Type as GraphqlType;
 
 // todo current method not working due to bug in JWT package
 class LogOutMutation extends Mutation
@@ -14,7 +15,7 @@ class LogOutMutation extends Mutation
         'name' => 'logOut'
     ];
 
-    public function type()
+    public function type(): GraphqlType
     {
         return Type::nonNull(Type::string());
     }

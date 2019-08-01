@@ -2,13 +2,15 @@
 
 namespace App\GraphQL\Queries;
 
+use Closure;
 use App\Models\Country;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use Rebing\GraphQL\Support\SelectFields;
+use Illuminate\Support\Arr;
+use Rebing\GraphQL\Support\Query;
 use App\GraphQL\Filters\CountryFilters;
 use GraphQL\Type\Definition\ResolveInfo;
-use Rebing\GraphQL\Support\Query;
-use Illuminate\Support\Arr;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use GraphQL\Type\Definition\Type as GraphqlType;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CountriesQuery extends Query
 {
@@ -17,7 +19,7 @@ class CountriesQuery extends Query
         'description' => 'A query of Countries'
     ];
 
-    public function type()
+    public function type() :GraphqlType
     {
         return GraphQL::paginate('Countries');
     }
@@ -32,16 +34,19 @@ class CountriesQuery extends Query
     }
 
     /**
-     * @param              $root
-     * @param              $args
-     * @param SelectFields $fields
-     * @param ResolveInfo  $info
+     * @param             $root
+     * @param             $args
+     * @param             $context
+     * @param ResolveInfo $info
+     * @param Closure     $getSelectFields
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
-    public function resolve($root, $args, SelectFields $fields, ResolveInfo $info)
+    public function resolve($root, $args, $context, ResolveInfo $info, Closure $getSelectFields) :LengthAwarePaginator
     {
-        return Country::with(array_keys($fields->getRelations()))
+        $fields = $getSelectFields();
+
+        return Country::select($fields->getSelect())->with($fields->getRelations())
             ->apiFilter(new CountryFilters($args))
             ->apiSortable($args)
             ->paginate(

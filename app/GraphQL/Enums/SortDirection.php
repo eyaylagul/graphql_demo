@@ -1,13 +1,12 @@
 <?php
+declare(strict_types=1);
 
-namespace App\GraphQL\Enum;
+namespace App\GraphQL\Enums;
 
-use Rebing\GraphQL\Support\Type as GraphQLType;
+use Rebing\GraphQL\Support\EnumType;
 
-class SortDirection extends GraphQLType
+class SortDirection extends EnumType
 {
-    protected $enumObject = true;
-
     protected $attributes = [
         'name' => 'SortDirection',
         'values' => [
