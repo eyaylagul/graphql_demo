@@ -70,14 +70,12 @@ class Properties extends GraphQLType
             'lng' => [
                 'type' => Type::nonNull(Type::float()),
             ],
+            /* todo replace with strict json type  because it has only 3 field */
             'initiator' => [
-                'type' => Type::string(),
-//                'type'          => Type::listOf(GraphQL::type('post')),
-                'description'   => 'A list of posts written by the user',
-                // Now this will simply request the "posts" column, and it won't
-                // query for all the underlying columns in the "post" object
-                // The value defaults to true
-//                'is_relation' => false
+                'type' => GraphQL::type('Json')
+            ],
+            'features' => [
+                'type' => GraphQL::type('Json')
             ],
             'type' => [
                 'type' => Type::nonNull(GraphQL::type('PropertyTypes')),

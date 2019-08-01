@@ -132,6 +132,7 @@ return [
         'Pagination'     => App\GraphQL\Scalars\Pagination::class,
         'DateTimeRange'  => App\GraphQL\Scalars\DateTimeRange::class,
         'IntRange'       => App\GraphQL\Scalars\IntRange::class,
+        'Json'           => App\GraphQL\Scalars\Json::class,
 
         'Users'              => App\GraphQL\Types\Users::class,
         'Permissions'        => App\GraphQL\Types\Permissions::class,

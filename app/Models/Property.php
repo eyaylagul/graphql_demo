@@ -79,7 +79,7 @@ class Property extends Model
     protected $dates = ['created_at', 'updated_at', 'expire_at', 'available_at'];
     protected $casts = [
         'features'  => 'json',
-//        'initiator' => 'json',
+        'initiator' => 'json',
         'pets'      => 'boolean'
     ];
 

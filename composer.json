@@ -20,7 +20,8 @@
     "santigarcor/laratrust": "5.2.*",
     "spatie/laravel-cors": "^1.5",
     "toin0u/geocoder-laravel": "^4.1",
-    "tymon/jwt-auth": "^1.0"
+    "tymon/jwt-auth": "^1.0",
+    "ext-json": "*"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.6",
