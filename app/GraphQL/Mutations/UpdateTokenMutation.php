@@ -4,6 +4,7 @@ namespace App\GraphQL\Mutations;
 
 use GraphQL\Type\Definition\Type;
 use GraphQL\Type\Definition\Type as GraphqlType;
+use Rebing\GraphQL\Error\AuthorizationError;
 use Rebing\GraphQL\Support\Mutation;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -35,7 +36,7 @@ class UpdateTokenMutation extends Mutation
             JWTAuth::unsetToken();
             $newToken = JWTAuth::fromUser($user);
         } catch (TokenExpiredException $e) {
-            throw new \Exception('Token was not found!');
+            return new AuthorizationError('Token was not found!');
         }
         return [
             'access_token' => $newToken,

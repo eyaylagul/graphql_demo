@@ -233,5 +233,6 @@ return [
         'Laratrust'    => Laratrust\LaratrustFacade::class,
     ],
 
-    'homebuzz_api_key' => env('HOMEBUZZ_API_KEY')
+    'homebuzz_api_key' => env('HOMEBUZZ_API_KEY'),
+    'email_admin' => env('ADMIN_EMAILS')
 ];

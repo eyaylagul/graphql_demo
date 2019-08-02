@@ -80,6 +80,10 @@ class User extends Authenticatable implements JWTSubject
         'updated_at',
         'email_verified_at'
     ];
+    /**
+     * Define by default values to field
+     * @var array
+     */
     protected $attributes = [
         'status' => UserStatus::AVAILABLE
     ];

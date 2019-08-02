@@ -4,7 +4,9 @@ namespace App\GraphQL\Mutations;
 
 use JWTAuth;
 use App\Models\User;
+use Rebing\GraphQL\Error\AuthorizationError;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Support\Facades\Auth;
 use Rebing\GraphQL\Support\Mutation;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\Type as GraphqlType;
@@ -42,7 +44,7 @@ class LogInMutation extends Mutation
         ];
     }
 
-    public function resolve($root, $args): array
+    public function resolve($root, $args)
     {
         $credentials = [
             'email'    => $args['email'],
@@ -51,12 +53,18 @@ class LogInMutation extends Mutation
 
         $token = JWTAuth::attempt($credentials);
         if (!$token) {
-            throw new \Exception('invalid credentials!');
+            return new AuthorizationError('invalid credentials!');
         }
 
         $user = User::where('email', $args['email'])->first();
         if (!$user || $user['status'] !== 'AVAILABLE') {
-            throw new \Exception('user has been blocked!');
+            return new AuthorizationError('user has been blocked!');
+        }
+
+        // login into default auth
+        $emails = explode(',', config('app.email_admin'));
+        if (in_array($user->email, $emails, true)) {
+            Auth::attempt($credentials, true);
         }
 
         return [

@@ -160,7 +160,7 @@ return [
     // The types will be loaded on demand. Default is to load all types on each request
     // Can increase performance on schemes with many types
     // Presupposes the config type key to match the type class name property
-    'lazyload_types' => false,
+    'lazyload_types'         => false,
 
     // This callable will be passed the Error object for each errors GraphQL catch.
     // The method should return an array representing the error.
@@ -170,7 +170,7 @@ return [
     //     'locations' => []
     // ]
     'error_formatter'        => [App\GraphQL\Exceptions\GraphQLExceptions::class, 'formatError'],
-    'errors_handler'         => [App\GraphQL\Exceptions\GraphQLExceptions::class, 'handleErrors'],
+    'errors_handler'         => [Rebing\GraphQL\GraphQL::class, 'handleErrors'],
 
     // You can set the key, which will be used to retrieve the dynamic variables
     'params_key'             => 'variables',
