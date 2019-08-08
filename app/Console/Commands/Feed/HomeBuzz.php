@@ -16,6 +16,11 @@ use App\Enums\PropertyStatus;
 use Geocoder\Laravel\Facades\Geocoder;
 use SimpleXMLElement;
 
+/**
+ * Class HomeBuzz
+ * http://homebuzz.me/feed/padmapper/?authKey=a9B1860bB3A29b8ED618D9424d388F2c6b312fb5
+ * @package App\Console\Commands\Feed
+ */
 class HomeBuzz extends Command
 {
     private $propertyType = [
@@ -220,39 +225,37 @@ class HomeBuzz extends Command
 
             $property->save();
 
-            $pictureExists = PropertyMedia::where('property_id', $property->id)->first();
-            if (!$pictureExists) {
-                $pictures = null;
-                $i        = 0;
-                foreach ($externalProperty->Photos as $img) {
-                    $media = new PropertyMedia();
+            $pictures = null;
+            $i        = 0;
+            $timestamp = Carbon::now();
+            foreach ($externalProperty->Photos->Photo as $img) {
+                $media = new PropertyMedia();
 
-                    if ($i === 0) {
-                        $media->is_primary = true;
-                    }
-                    $media->property_id = $property->id;
-                    $media->position    = $i++;
-                    $media->path        = $this->downloadPicture(
-                        (string)$img->Photo->URL,
-                        '/property/homebuzz/' . Carbon::now()->year . '/' . Carbon::now()->month . '/' . $property->id . '/'
-                    );
-                    $media->is_local    = true;
-                    $media->type        = PropertyMediaType::IMG;
-                    $timestamp = Carbon::now();
-                    $media->created_at = $timestamp;
-                    $media->updated_at = $timestamp;
+                $media->is_primary = false;
+                if ($i === 0) {
+                    $media->is_primary = true;
+                }
+                $media->property_id = $property->id;
+                $media->position    = $i++;
+                $media->path        = $this->downloadPicture(
+                    (string)$img->URL,
+                    '/property/homebuzz/' . Carbon::now()->year . '/' . Carbon::now()->month . '/' . $property->id . '/'
+                );
+                $media->is_local    = true;
+                $media->type        = PropertyMediaType::IMG;
+                $media->created_at = $timestamp;
+                $media->updated_at = $timestamp;
 
-                    // if file not fetched or missing on the server skip it
-                    if ($media->path === null) {
-                        continue;
-                    }
-
-                    $pictures[] = $media->attributesToArray();
+                // if file not fetched or missing on the server skip it
+                if ($media->path === null) {
+                    continue;
                 }
 
-                if (is_array($pictures)) {
-                    PropertyMedia::insert($pictures);
-                }
+                $pictures[] = $media->attributesToArray();
+            }
+
+            if (is_array($pictures)) {
+                PropertyMedia::insert($pictures);
             }
         }
     }
@@ -280,21 +283,24 @@ class HomeBuzz extends Command
     }
 
     /**
-     * @param $url
-     * @param $dir
+     * @param string $url
+     * @param string $dir
      *
      * @return string|null
      */
-    public function downloadPicture($url, $dir): ?string
+    public function downloadPicture(string $url, string $dir): ?string
     {
         try {
             $fileSource = file_get_contents($url);
             $fileName   = basename($url);
-            Storage::disk('local')->put($dir . $fileName, $fileSource);
+
+            Storage::disk('public')->put($dir . $fileName, $fileSource);
 
             return $dir . $fileName;
         } catch (Exception $e) {
-            Log::channel('homebuzz')->info('Img Url ' . $url . ' File missing: ' . $e->getMessage());
+            $message = 'Img Url ' . $url . ' File missing: ' . $e->getMessage();
+            $this->error($message);
+            Log::channel('homebuzz')->info($message);
         }
 
         return null;
@@ -302,8 +308,8 @@ class HomeBuzz extends Command
 
     private function removeFile(string $location): bool
     {
-        if (Storage::disk('local')->exists($location)) {
-            return Storage::disk('local')->delete($location);
+        if (Storage::disk('public')->exists($location)) {
+            return Storage::disk('public')->delete($location);
         }
 
         return false;

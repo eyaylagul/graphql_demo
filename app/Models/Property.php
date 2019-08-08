@@ -131,7 +131,6 @@ class Property extends Model
         return $this->hasOne(PropertyType::class, 'id');
     }
 
-    /* todo check it */
     public function media(): HasMany
     {
         return $this->hasMany(PropertyMedia::class);
