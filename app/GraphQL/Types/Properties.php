@@ -1,6 +1,7 @@
 <?php
 namespace App\GraphQL\Types;
 
+use App\GraphQL\Filters\PropertyMediaFilter;
 use App\Models\Property;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
@@ -83,6 +84,35 @@ class Properties extends GraphQLType
             'city' => [
                 'type' => Type::nonNull(GraphQL::type('Cities')),
             ],
+            'media' => [
+                'type' => Type::listOf(GraphQL::type('PropertyMedia')),
+                'args' => [
+                    'filter' => ['name' => 'filter', 'type' => GraphQL::type('PropertyMediaFilter')],
+                    'sort' => ['name' => 'sort', 'type' => GraphQL::type('Sortable')]
+                ],
+                /* todo doesn't work */
+//                'query' => static function (array $args, $query) {
+//                    dd($args);
+////                    if (isset($args['filter']['is_primary'])) {
+////                        return $query->media->find($args['filter']['is_primary']);
+////                    }
+//                    return $query->media()->apiSortable($args)->get();
+////                    dd($query);
+////                    return $query->media()->apiFilter(new PropertyMediaFilter($args))->apiSortable($args);
+//                },
+            ],
         ];
     }
+
+//    public function resolveMediaField($query, $args)
+//    {
+//        return $query->media()->apiSortable($args)->get();
+//        // working fine but to use all filter, too much if and dublications
+////        if (isset($args['filter']['id'])) {
+////            return $query->permissions->find($args['filter']['id']);
+////        }
+//        // permissions is collection so I cant use scope function from traits
+////        return $query->permissions->apiFilter(new PermissionFilter($args))->apiSortable($args)->get(); // Preferable variant
+////        return $query->media()->apiFilter(new PropertyMediaFilter($args))->apiSortable($args)->get();
+//    }
 }

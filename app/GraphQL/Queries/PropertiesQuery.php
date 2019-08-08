@@ -44,6 +44,7 @@ class PropertiesQuery extends Query
      */
     public function resolve($root, $args, $context, ResolveInfo $info, Closure $getSelectFields) :LengthAwarePaginator
     {
+//        $info->getFieldSelection($depth = 3);
         $fields = $getSelectFields();
 
         return Property::select($fields->getSelect())->with($fields->getRelations())
